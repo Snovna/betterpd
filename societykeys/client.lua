@@ -1,7 +1,10 @@
 ESX = exports['es_extended']:getSharedObject()
 
 RegisterNetEvent('esx:playerLoaded', function()
-    ESX.TriggerServerCallback('betterpd:getFactionVehiclePlates', function(data)
+    while not ESX.GetPlayerData().job do
+		Citizen.Wait(500)
+	end
+	ESX.TriggerServerCallback('betterpd:getFactionVehiclePlates', function(data)
 		for i, v in ipairs(data) do
 			TriggerEvent('cd_garage:AddKeys', v.plate)
 			print("added plate : "..v.plate)
