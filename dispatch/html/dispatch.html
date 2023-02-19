@@ -1,0 +1,67 @@
+<head>
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
+    <script src="https://use.fortawesome.com/1ce05b4b.js"></script>
+    <link rel="stylesheet" href="style-dispatch.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app" data-v-app>
+        <div id="context">
+            <div class="option">Option 1</div>
+            <div class="option">Option 2</div>
+            <div class="option">Option 3</div>
+            <div class="option">Option 4</div>
+        </div>
+
+
+        <div class="call-list">
+            <template v-for="call in calls" :key="call.id">
+                <div class="call" :class="call.type">
+                    <span class="call-title">{{ call.title }}</span><span class="status" :class="call.status">{{
+                        call.statusText }}</span><span class="call-id">#{{call.id}}</span>
+                    <p>{{call.message}}</p>
+                    <span class="call-distance"><i class="fa-solid fa-location-dot"></i> {{call.distance}}</span><span
+                        class="call-units">Units:</span><span class="unit" :class="[unit.type, unit.status]"
+                        v-for="unit in call.units">{{unit.callsign}}</span>
+                </div>
+            </template>
+        </div>
+    </div>
+    <script src="js-dispatch.js"></script>
+</body>
+
+<!--
+    <div class="call-list">
+        <div class="call">
+            <span class="call-title">911 Dispatch</span><span class="status new">New</span><span class="call-id">#1</span>
+            <p>Lorem Ipsum ist ein einfacher Demo-Text für die Print- und Schriftindustrie. Lorem Ipsum ist in der
+                Industrie bereits der Standard Demo-Text seit 1500, als ein unbekannter Schriftsteller eine Hand voll
+                Wörter nahm und diese durcheinander warf um ein Musterbuch zu erstellen.</p>
+                <span class="call-distance"><i class="fa-solid fa-location-dot"></i> 2.6km</span><span class="call-units">Units:</span><span class="unit police active">PD13</span><span class="unit police pending">PD69</span>
+        </div>
+        <div class="call">
+            <span class="call-title">10-13 Shots fired - Downtown</span><span class="status dispatched">Dispatched</span><span class="call-id">#2</span>
+            <p>Lorem Ipsum ist ein einfacher Demo-Text für die Print- und Schriftindustrie. Lorem Ipsum ist in der
+                Industrie bereits der Standard Demo-Text seit 1500, als ein unbekannter Schriftsteller eine Hand voll
+                Wörter nahm und diese durcheinander warf um ein Musterbuch zu erstellen.</p>
+                <span class="call-distance"><i class="fa-solid fa-location-dot"></i> 1.2km</span><span class="call-units">Units:</span><span class="unit police active">PD40</span><span class="unit police pending">PD06</span><span class="unit ems active">MD09</span>
+        </div>
+        <div class="call ems">
+            <span class="call-title">912 Dispatch</span><span class="status dispatched">Dispatched</span><span class="call-id">#3</span>
+            <p>Lorem Ipsum ist ein einfacher Demo-Text für die Print- und Schriftindustrie. Lorem Ipsum ist in der
+                Industrie bereits der Standard Demo-Text seit 1500</p>
+                <span class="call-distance"><i class="fa-solid fa-location-dot"></i> 1.0km</span><span class="call-units">Units:</span><span class="unit ems active">MD02</span>
+        </div>
+        <div class="call ems">
+            <span class="call-title">Alvaro auf Kokain-Trip</span><span class="status arrived">Arrived on Scene</span><span class="call-id">#4</span>
+            <p>Lorem Ipsum ist ein einfacher Demo-Text für die Print- und Schriftindustrie. Lorem Ipsum ist in der
+                Industrie bereits der Standard Demo-Text seit 1500</p>
+                <span class="call-distance"><i class="fa-solid fa-location-dot"></i> 687m</span><span class="call-units">Units:</span><span class="unit ems active">MD07</span>
+        </div>
+        <div class="call">
+            <span class="call-title">Bank Robbery in Progress</span><span class="status new">New</span><span class="call-id">#5</span>
+            <p>Maze Bank, 1629 Union Road, Downtown, Los Santos</p>
+            <span class="call-distance"><i class="fa-solid fa-location-dot"></i> 19m</span><span class="call-units">Units:</span><span class="unit police pending">PD55</span><span class="unit police pending">PD41</span>
+        </div>
+    </div>-->
