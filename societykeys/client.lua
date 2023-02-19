@@ -7,7 +7,7 @@ RegisterNetEvent('esx:playerLoaded', function()
 	ESX.TriggerServerCallback('betterpd:getFactionVehiclePlates', function(data)
 		for i, v in ipairs(data) do
 			TriggerEvent('cd_garage:AddKeys', v.plate)
-			print("added plate : "..v.plate)
+			--print("added plate : "..v.plate)
 		end
     end, ESX.GetPlayerData().job.name)
 end)
@@ -22,12 +22,12 @@ RegisterNetEvent('sqz_duty:ToggleDuty', function(duty)
 		if duty then
 			for i, v in ipairs(data) do
 				TriggerEvent('cd_garage:AddKeys', v.plate)
-				print("added plate : "..v.plate)
+				--print("added plate : "..v.plate)
 			end
 		else
 			for i, v in ipairs(data) do
 				TriggerEvent('cd_garage:RemoveKeys', v.plate)
-				print("removed plate : "..v.plate)
+				--print("removed plate : "..v.plate)
 			end
 		end
     end, jobName)
