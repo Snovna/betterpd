@@ -79,7 +79,13 @@ for i=1,#Config.Uniforms do
             end)
         end,
         canInteract = function()
-            return (Config.Uniforms[i].male == IsPedMale(PlayerPedId()))
+            local jobCheck = false
+            for j=1,#Config.Uniforms[i].jobs do 
+                if(Config.Uniforms[i].jobs[j] == ESX.GetPlayerData().job.name) then
+                    jobCheck = true
+                end
+            end
+            return (jobCheck and (Config.Uniforms[i].male == IsPedMale(PlayerPedId())))
         end
     })
 end

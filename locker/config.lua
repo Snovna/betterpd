@@ -12,6 +12,7 @@ Config.Uniforms = {
     {
         name = "Streifendienst",
         description = "Die regülare Uniform für den Streifendienst",
+        jobs = {"police"},
         male = true,
         skin = {
             tshirt_1     = 126,
@@ -39,6 +40,7 @@ Config.Uniforms = {
     {
         name = "Taktische Ausrüstung",
         description = "Streifenuniform mit taktischer Zusatzausrüstung für Gefahrenlagen",
+        jobs = {"police"},
         male = true,
         skin = {
             tshirt_1     = 126,
