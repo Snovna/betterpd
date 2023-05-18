@@ -55,39 +55,32 @@ local clothesOptions = {
 };
 
 for i=1,#Config.Uniforms do
-    table.insert(clothesOptions,{
-        title = Config.Uniforms[i].name,
-        description = Config.Uniforms[i].description,
-        icon = 'shirt',
-        onSelect = function()
-            local skin = copy(Config.Uniforms[i].skin)
-            local grade = ESX.GetPlayerData().job.grade
-            local overrides = Config.Uniforms[i].skinGrades[grade]
-            if(overrides ~= nil) then 
-                for k, v in pairs(overrides) do
-                    skin[k] = v
-                end
-            end
-            if(Config.Uniforms[i].male) then
-                skin.sex = 0
-            else
-                skin.sex = 1
-            end
-            TriggerEvent('skinchanger:loadSkin', skin)
-            TriggerEvent('skinchanger:getSkin', function(changedSkin)
-                TriggerServerEvent('esx_skin:save', changedSkin)
-            end)
-        end,
-        canInteract = function()
-            local jobCheck = false
-            for j=1,#Config.Uniforms[i].jobs do 
-                if(Config.Uniforms[i].jobs[j] == ESX.GetPlayerData().job.name) then
-                    jobCheck = true
-                end
-            end
-            return (jobCheck and (Config.Uniforms[i].male == IsPedMale(PlayerPedId())))
-        end
-    })
+	if(Config.Uniforms[i].male == (IsPedMale(cache.ped)==1)) then
+		table.insert(clothesOptions,{
+			title = Config.Uniforms[i].name,
+			description = Config.Uniforms[i].description,
+			icon = 'shirt',
+			onSelect = function()
+				local skin = copy(Config.Uniforms[i].skin)
+				local grade = ESX.GetPlayerData().job.grade
+				local overrides = Config.Uniforms[i].skinGrades[grade]
+				if(overrides ~= nil) then 
+					for k, v in pairs(overrides) do
+						skin[k] = v
+					end
+				end
+				if(Config.Uniforms[i].male) then
+					skin.sex = 0
+				else
+					skin.sex = 1
+				end
+				TriggerEvent('skinchanger:loadSkin', skin)
+				TriggerEvent('skinchanger:getSkin', function(changedSkin)
+					TriggerServerEvent('esx_skin:save', changedSkin)
+				end)
+			end
+		})
+	end
 end
 lib.registerContext({
     id = 'betterpd_clothes',
